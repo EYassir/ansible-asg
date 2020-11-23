@@ -1,6 +1,10 @@
 - name: deploy web app
   command: chdir=/var/www/html git pull
 
+- name: Install mb-sting
+  shell:
+    cmd: apt install php-mbstring -y
+
 - name: Change wordpress OWner
   shell:
     cmd: chown -R www-data:www-data /var/www/html

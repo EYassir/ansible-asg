@@ -1,0 +1,4 @@
+- hosts: tag_Name_ey_instance_from_asg
+  remote_user: ubuntu
+  roles:
+    - { role: ../roles/awslogs, become: yes }

@@ -1,0 +1,14 @@
+- name: Download awslogs agent
+  shell:  curl https://s3.amazonaws.com/aws-cloudwatch/downloads/latest/awslogs-agent-setup.py -O
+
+- name: Install awscli
+  apt:
+    name: awscli
+
+- name: Copy AWS cloudwatch agent conf file 
+  copy:
+    src: files/agent.conf
+    dest: /home/ubuntu/agent.conf
+
+- name: Setup CloudWatch Agent
+  shell:  python awslogs-agent-setup.py --region eu-west-1 -c /home/ubuntu/agent.conf -n
