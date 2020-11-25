@@ -1,0 +1,24 @@
+- name: Create pem files
+  shell:  mkdir -p /var/lib/jenkins/.ssh/pemfiles
+
+- name: Copy remote private ec2-key to pemfiles directory
+  shell:  aws s3 cp s3://terraform-fitec-example-bucket-state/ec2-key /var/lib/jenkins/.ssh/pemfiles/ec2-key
+
+- name: Protect private ec2-key
+  shell:  chmod 400 /var/lib/jenkins/.ssh/pemfiles/ec2-key
+
+- name: ssh conf file
+  copy:
+    src: files/config
+    dest: /var/lib/jenkins/.ssh/
+
+- name: Change files owner to jenkins
+  shell: chown -R jenkins:jenkins /var/lib/jenkins/.ssh
+
+- name: Change files owner to jenkins
+  shell: chown -R jenkins:jenkins /var/lib/jenkins/.ssh/*
+
+- name: Copy ansible config (contains aws_ec2 plugins)
+  copy:
+    src: files/ansible.cfg
+    dest: /etc/ansible/ansible.cfg

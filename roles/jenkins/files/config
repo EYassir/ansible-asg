@@ -1,0 +1,5 @@
+HOST 11.*
+    IdentityFile /var/lib/jenkins/.ssh/pemfiles/ec2-key
+    User ubuntu
+    StrictHostKeyChecking no
+    UserKnownHostsFile=/dev/null

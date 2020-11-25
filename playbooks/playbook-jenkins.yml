@@ -1,0 +1,4 @@
+- hosts: tag_Name_ey_terraform_jenkins
+  remote_user: ubuntu
+  roles:
+    - { role: ../roles/jenkins, become: yes }
